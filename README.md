@@ -16,6 +16,8 @@ Despite this limitation, humans excel at complex cognitive tasks through special
 [^4]: Gobet, F., Lane, P. C., Croker, S., Cheng, P. C., Jones, G., Oliver, I., & Pine, J. M. (2001). Chunking mechanisms in human learning. _Trends in cognitive sciences_, 5(6), 236-243. https://www.sciencedirect.com/science/article/abs/pii/S1364661300016624
 [^5]: Talmi, D. (2013). Enhanced emotional memory: Cognitive and neural mechanisms. _Current Directions in Psychological Science_, 22(6), 430-436. https://journals.sagepub.com/doi/10.1177/0963721413498893
 [^6]: Buchanan, T. W. (2007). Retrieval of emotional memories. _Psychological Bulletin_, 133(5), 761-779. https://doi.org/10.1037/0033-2909.133.5.761
+[^7]: Nickerson, R. S. (1998). Confirmation bias: A ubiquitous phenomenon in many guises. _Review of General Psychology_, 2(2), 175-220. https://doi.org/10.1037/1089-2680.2.2.175
+[^8]: Festinger, L. (1957). A Theory of Cognitive Dissonance. Stanford University Press.
 
 ### Memory Systems Comparison
 
@@ -28,6 +30,7 @@ Despite this limitation, humans excel at complex cognitive tasks through special
 | Chunking ability | Strong, automatic [^4] | Limited without specific design |
 | Importance-based retention | Prioritizes important information [^5] | No native prioritization |
 | Emotion-linked memory | Strong correlation with emotional states [^6] | No emotional states |
+| Belief system integration | Filters memories through beliefs [^7] | No belief consistency filtering |
 
 ## Research Questions
 
@@ -69,6 +72,34 @@ Human memory formation and recall are strongly influenced by emotional states:
 
 This emotion-memory link provides another layer of prioritization that helps humans remember events of potential future importance.
 
+### Belief-Based Memory Filtering
+
+Humans don't simply store all new information equally - they filter it through existing belief systems:
+
+1. **Belief perseverance**: Existing beliefs resist change even when contradicted by new evidence
+2. **Selective encoding**: Information consistent with existing beliefs gets encoded more deeply
+3. **Motivated reasoning**: People interpret ambiguous information to align with existing beliefs
+4. **Source credibility assessment**: Sources that contradict beliefs are often deemed less credible
+5. **Memory compartmentalization**: Contradictory memories get stored but with cognitive "flags" noting their inconsistency
+
+This belief-filtering mechanism explains how people can simultaneously remember contradictory information ("someone told me the Earth is round") while maintaining inconsistent beliefs ("I believe the Earth is flat"). The human memory system stores both but prioritizes belief-consistent information during recall and decision-making.
+
+### Belief Change Mechanisms
+
+People change deeply-held beliefs (such as from "flat Earth" to "round Earth") through gradual processes rather than immediate updates:
+
+1. **Evidence accumulation threshold**: Single contradictions are easily dismissed, but persistent patterns of evidence eventually reach a tipping point
+
+2. **Source credibility factors**: Information from trusted sources (respected peers, authority figures, educational institutions) has greater influence on belief revision
+
+3. **Cognitive dissonance resolution**: When the mental effort to maintain contradictory beliefs exceeds the effort to update beliefs, people tend to resolve the inconsistency
+
+4. **Social group alignment**: Beliefs tied to social identity change more readily when social connections shift or when the group itself changes position
+
+5. **Emotional and identity investment**: Beliefs deeply tied to personal identity or emotional investment are more resistant to change than peripheral beliefs
+
+These mechanisms operate in parallel, with belief change typically occurring when multiple factors align to overcome the inherent resistance to updating core beliefs [^8].
+
 ## Observations about LLMs
 
 1. LLMs have superior working memory compared to humans, excelling at tasks requiring large context retention (e.g., summarizing long texts)
@@ -82,6 +113,10 @@ This emotion-memory link provides another layer of prioritization that helps hum
 5. LLMs have no native importance-based memory prioritization system
 
 6. LLMs lack emotional states that influence memory encoding and retrieval
+
+7. LLMs don't filter new information through existing beliefs or knowledge
+
+8. LLMs typically store all information with equal priority, regardless of belief compatibility
 
 ## Task Performance Comparison: Human vs. LLM
 
@@ -100,6 +135,7 @@ This emotion-memory link provides another layer of prioritization that helps hum
 | **Spatial memory** | Environmental recall | Human | Humans excel at navigating and recalling spatial information; LLMs struggle with spatial relationships |
 | **Memory consolidation during rest** | Memory organization | Human | Humans reorganize memories during sleep; LLMs reorganize memories during fine-tuning |
 | **Self-aware memory limitations** | Metacognition | Human | Humans know what they don't know; LLMs often confidently present incorrect recalls |
+| **Processing contradictory information** | Belief integration | Human | Humans filter and tag information that contradicts beliefs; LLMs store information without belief filtering |
 
 ## Core Hypothesis
 
@@ -137,16 +173,26 @@ An LLM system that mimics human memory patterns—specifically interleaved gener
    - Tag memories with associated emotional states when storing
    - Use emotional relevance as a retrieval dimension
 
-5. **Tiered Memory Store**
+5. **Belief-Based Filtering**
+   - Maintain a belief system representation for the user
+   - Score new memories for compatibility with existing beliefs
+   - Tag contradictory information rather than discarding it
+   - Prioritize belief-consistent information during retrieval
+   - Track evidence accumulation against existing beliefs
+   - Implement belief change thresholds based on multiple factors
+
+6. **Tiered Memory Store**
    - Short-term: Most recent context (last few exchanges)
    - Medium-term: Current session information with priority scoring
    - Long-term: User profile and persistent prioritized information
+   - Belief system: Core knowledge and worldview components
 
-6. **Memory Consolidation**
+7. **Memory Consolidation**
    - Periodically review and reorganize stored memories
    - Promote frequently accessed memories to higher priority
    - Merge related memories to create "chunked" concepts
    - Prune low-priority memories to prevent context overload
+   - Reinforce beliefs with supporting memories
 
 ### Implementation Plan
 
@@ -154,10 +200,12 @@ An LLM system that mimics human memory patterns—specifically interleaved gener
 2. Implement simple memory storage with basic recency prioritization
 3. Add importance detection for prioritized memory storage
 4. Develop emotional context extraction and matching
-5. Build orchestration layer for interleaved retrieval-generation
-6. Implement periodic memory consolidation process
+5. Implement belief system representation and compatibility scoring
+6. Build orchestration layer for interleaved retrieval-generation
+7. Create memory filtering pipeline with belief consistency checks
+8. Implement periodic memory consolidation process
 
-Each component will maintain a single responsibility and clear interfaces, allowing for incremental development and testing of each memory aspect independently.
+Each component will maintain a single responsibility and clear interfaces, allowing for incremental development and testing of each memory aspect independently. All functions will adhere to the 100-line maximum guideline, with most targeting the 20-50 line optimal range for readability and maintainability.
 
 ## Evaluation Methodology
 
